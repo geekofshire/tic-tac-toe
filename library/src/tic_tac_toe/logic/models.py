@@ -30,7 +30,7 @@ class Grid:
     cells: str = " " * 9
 
     def __post_init__(self) -> None:
-        validate_game_state(self)
+        validate_grid(self)
 
     @cached_property
     def x_count(self) -> int:
@@ -56,6 +56,9 @@ class Move:
 class GameState:
     grid: Grid
     starting_mark: Mark = Mark("X")
+
+    def __post_init__(self) -> None:
+        validate_game_state(self)
 
     @cached_property
     def current_mark(self) -> Mark:
@@ -119,4 +122,3 @@ class GameState:
                 self.starting_mark,
             ),
         )
-    
